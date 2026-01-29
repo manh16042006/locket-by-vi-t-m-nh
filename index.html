@@ -121,3 +121,29 @@
 
 </body>
 </html>
+<div id="zalo-warning" style="display: none; margin-bottom: 20px;" class="note">
+    <b style="color: #ef4444;">⚠️ CẢNH BÁO:</b> Bạn đang mở trang web từ Zalo. Zalo sẽ chặn tải DNS. 
+    <br><br>
+    <b>Cách sửa:</b> Nhấn vào dấu <b>(...)</b> ở góc trên bên phải và chọn <b>"Mở bằng trình duyệt"</b> để tiếp tục.
+</div>
+
+<script>
+    // Kiểm tra xem có phải đang mở bằng Zalo hay không
+    function isZalo() {
+        return /Zalo/i.test(navigator.userAgent);
+    }
+
+    if (isZalo()) {
+        // Hiện thông báo cảnh báo
+        document.getElementById('zalo-warning').style.display = 'block';
+        
+        // Đổi màu nút để nhắc nhở người dùng không bấm vô ích
+        const dnsBtn = document.querySelector('.btn-link-dns');
+        dnsBtn.style.background = '#64748b';
+        dnsBtn.innerHTML = 'Mở trong Safari để tải ↗️';
+        dnsBtn.onclick = function(e) {
+            e.preventDefault();
+            alert("Bạn cần nhấn vào dấu 3 chấm góc trên bên phải -> Chọn 'Mở bằng trình duyệt' thì mới tải được DNS nhé!");
+        };
+    }
+</script>
